@@ -75,6 +75,7 @@ Bluetooth RX	D1 (TX via voltage divider)
 LCD SDA	A4
 LCD SCL	A5
 💻 Arduino Code
+![Image](https://github.com/user-attachments/assets/aa6960d4-70a8-4ae4-9260-76a2168128dc)
 
 The project uses embedded C/C++ programmed via the Arduino IDE.
 
