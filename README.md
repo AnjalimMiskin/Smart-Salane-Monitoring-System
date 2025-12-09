@@ -30,6 +30,7 @@ It ensures real-time monitoring, wireless alerts, and automatic safety actions, 
 🖥️ LCD display with live status updates
 
 💰 Low-cost, hygienic, and easy to install
+![Image](https://github.com/user-attachments/assets/d0854404-990b-4734-a6d0-a836cb1038b7)
 
 🛠️ Components Used
 
