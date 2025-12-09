@@ -47,6 +47,7 @@ HC-05 Bluetooth Module
 Breadboard & jumper wires
 
 Saline bottle and IV tube
+![Image](https://github.com/user-attachments/assets/9b8f317e-88b8-482b-87c8-993ecae035fa)
 
 🧠 System Working
 
