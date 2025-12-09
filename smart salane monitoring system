@@ -1,0 +1,88 @@
+#include <Servo.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+#define TRIG_PIN 9
+#define ECHO_PIN 8
+#define SERVO_PIN 6
+
+Servo myservo;
+// Change address to 0x3F if display blank
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+float bottleHeight = 13.0;
+float maxVolume = 100.0;
+float minVolume = 10.0;
+
+void setup() {
+  Serial.begin(9600);
+  myservo.attach(SERVO_PIN);
+
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+
+  lcd.init();
+  lcd.backlight();
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Saline Monitor");
+  delay(2000);
+  lcd.clear();
+}
+
+float readDistance() {
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  long duration = pulseIn(ECHO_PIN, HIGH, 30000);
+  if (duration == 0) return -1;
+
+  float distance = duration * 0.034 / 2.0;
+  return distance;
+}
+
+void loop() {
+  float distance = readDistance();
+
+  if (distance < 0) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("No echo!");
+    Serial.println("No echo from sensor");
+    delay(500);
+    return;
+  }
+
+  float liquidHeight = bottleHeight - distance;
+  if (liquidHeight < 0) liquidHeight = 0;
+  if (liquidHeight > bottleHeight) liquidHeight = bottleHeight;
+
+  float remainingVolume = (liquidHeight / bottleHeight) * maxVolume;
+
+  Serial.print("Dist:");
+  Serial.print(distance);
+  Serial.print(" cm  Vol:");
+  Serial.print(remainingVolume);
+  Serial.println(" ml");
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Vol:");
+  lcd.print(remainingVolume, 1);
+  lcd.print(" ml");
+
+  lcd.setCursor(0, 1);
+  if (remainingVolume <= minVolume) {
+    myservo.write(90);
+    lcd.print("Pipe: CLOSED");
+    Serial.println("ALERT: Saline Low!");
+  } else {
+    myservo.write(0);
+    lcd.print("Pipe: OPEN");
+  }
+
+  delay(1000);
+}
