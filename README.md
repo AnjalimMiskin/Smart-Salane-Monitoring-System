@@ -5,7 +5,7 @@ The table explains each component’s role in the saline monitoring system. The 
 # Mini-Project
 The table explains each component’s role in the saline monitoring system. The ultrasonic sensor measures fluid level, Arduino processes data, the servo clamps the tube in critical cases, the Bluetooth module sends alerts, and the LCD displays real-time volume and status.
 
-Automated Saline Level Monitoring System 🚑💧
+# Automated Saline Level Monitoring System 🚑💧
 
 A smart IoT-based healthcare system designed to automatically monitor IV saline levels using an ultrasonic sensor, Arduino Uno, servo motor, LCD display, and Bluetooth alerts.
 The system prevents air embolism by auto-clamping the IV tube when the saline level becomes critically low and notifies nurses instantly via mobile alerts.
