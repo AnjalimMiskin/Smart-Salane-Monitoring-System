@@ -62,6 +62,7 @@ If volume < 10 ml, the system triggers:
 📲 “ALERT: Saline Low!” message sent via Bluetooth
 
 ⚠️ LCD displays warning
+![Image](https://github.com/user-attachments/assets/f47277c4-86f5-40c3-9185-77f655f0ccd9)
 
 When the saline bottle is replaced, the system automatically resets and resumes monitoring.
 
